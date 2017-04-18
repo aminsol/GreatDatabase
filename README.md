@@ -1,4 +1,4 @@
-# GreatDatabase
+# The Great Database
 This is a project for databsae class at Cal State University, Fullerton.
 
 # Tech
