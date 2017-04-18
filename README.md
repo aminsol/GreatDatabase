@@ -5,5 +5,3 @@ This is a project for databsae class at Cal State Fullerton
 Please take a look at followwing links:
 https://getbootstrap.com/css/
 https://getbootstrap.com/javascript/
-
-
