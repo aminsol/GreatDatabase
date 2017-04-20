@@ -1,5 +1,5 @@
 # The Great Database
-This is a project for databsae class at Cal State University, Fullerton.
+This is a project for database class at Cal State University, Fullerton.
 
 # Tech
 We are using Bootstrap to speed up our process of creating a website.learn how to use css and java script function please follow the following links:
