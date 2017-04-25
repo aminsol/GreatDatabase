@@ -21,14 +21,16 @@
 		$first = $_POST["first"];
 		$last = $_POST["last"];
 
-		//sql queries to register new user
-		$email_query = $db->query("INSERT INTO user email VALUES '$email' ");
-		$pw_query = $db->query("INSERT INTO user password VALUES '$password' ");
-		$first_query = $db->query("INSERT INTO user first VALUES '$first'");
-		$last_query = $db->query("INSERT INTO user first VALUES '$last'");
-
+		//sql query to register new user
+		$register_query = $db->query("INSERT INTO user (email,password,first,last) VALUES ('$email','$password','$first','$last') ");
+	
 		//handle registry
-		
+		if(isset($_POST["register"])){
+			echo("you registered successfully!");
+			mysql_query($register_query);
+		}else{
+			echo("try again!");
+		}
 	?>
 
 <html>
@@ -49,7 +51,7 @@
 				<p>password: <input type="text" name="password"/></p>
 				<p>first name: <input type="text" name="first"/></p>
 				<p>last name: <input type="text" name="last"/></p>
-				<p><input type="submit" name="register"/></p>
+				<p><input type="submit" name="register" value="Register"/></p>
 			</form>
 		</div>
 	</body>
