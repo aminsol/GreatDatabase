@@ -1,31 +1,29 @@
-<!--connect to database and run query-->
-	<?php
+
+	<?php 
+		//connect to database
 		$db = new mysqli("localhost","root","","Project");
 
-		if($db->connect_error){
-			echo "False";
+		//
+		$email = $_POST["email"];
+		$password = $_POST["password"];
+
+		$email_query = $db->query("SELECT * FROM user where email like '$email' ");
+		$pw_query = $db->query("SELECT * FROM user where password like '$password' ");
+
+		if(
+			$email_query->fetch_assoc() and $pw_query->fetch_assoc()
+		){
+			echo "Success";
 		}else{
-			echo "True";
+			echo "Your email or password is incorrect, try again.";
 		}
-
-		/*$sql = "SELECT user1 FROM Project";
-		$result = $conn->query($sql);
-
-		if ($result->num_rows > 0) {
-    		// output data of each row
-    		while($row = $result->fetch_assoc()) {
-        		echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
-    		}
-		} else {
-    		echo "0 results";
-		}
-		*/
+		
 	?>
 
 <html>
 	<head>
 		<title>LOGIN</title>
-		<link href="GreatDatabase/bootstrap.css" type="text/css" rel="stylesheet">
+		<link href="bootstrap.css" type="text/css" rel="stylesheet">
 		<style>
 			#login {
 				margin-left: auto;
@@ -35,9 +33,11 @@
 	</head>
 	<body>
 		<div id="login">
-			<p>username<input type="textfield"></p><br/>
-			<p>password<input type="textfield"></p><br/>
+			<form action="" method="post">
+				<p>email: <input type="text" name="email"/></p>
+				<p>password: <input type="text" name="password"/><p>
+				<p><input type="submit" name="login"/></p>
+			</form>
 		</div>
-		<div id=""
 	</body>
 </html>
