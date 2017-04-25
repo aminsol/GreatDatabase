@@ -39,13 +39,10 @@
 		<title>LOGIN</title>
 		<link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
 		<style>
-
-
 			body {
 				background-color: SeaGreen;
 				text-align: center;
 			}
-
 		</style>
 	</head>
 	<body>
@@ -55,6 +52,9 @@
 				<p>password: <input type="text" name="password"/><p>
 				<p><input type="submit" name="login"/></p>
 			</form>
+		</div>
+		<div id="register_link">
+			<p>Don't have an account? Register <a href="register.php">here.</a></p>
 		</div>
 	</body>
 </html>

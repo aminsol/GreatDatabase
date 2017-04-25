@@ -12,48 +12,44 @@
 		if ($db->connect_error){
 			echo "ERROR"."<br/>";
 		}else{
-			echo "Welcome to the Great Database!"."<br/>";
+			echo "Register to the Great Database!"."<br/>";
 		}
 
 		//declare credentials 
 		$email = $_POST["email"];
 		$password = $_POST["password"];
+		$first = $_POST["first"];
+		$last = $_POST["last"];
 
-		//sql queries to confirm login credentials
-		$email_query = $db->query("SELECT * FROM user where email like '$email' ");
-		$pw_query = $db->query("SELECT * FROM user where password like '$password' ");
+		//sql queries to register new user
+		$email_query = $db->query("INSERT INTO user email VALUES '$email' ");
+		$pw_query = $db->query("INSERT INTO user password VALUES '$password' ");
+		$first_query = $db->query("INSERT INTO user first VALUES '$first'");
+		$last_query = $db->query("INSERT INTO user first VALUES '$last'");
 
-		//handle login
-		if (
-			$email_query->fetch_assoc() and $pw_query->fetch_assoc()
-		){
-			echo "Success";
-		}else{
-			echo "Your email or password is incorrect, try again.";
-		}
+		//handle registry
 		
 	?>
 
 <html>
 	<head>
-		<title>LOGIN</title>
+		<title>REGISTER</title>
 		<link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
 		<style>
-
-
 			body {
 				background-color: SeaGreen;
 				text-align: center;
 			}
-
 		</style>
 	</head>
 	<body>
-		<div id="login">
+		<div id="register">
 			<form action="" method="post" id="login">
 				<p>email: <input type="text" name="email"/></p>
-				<p>password: <input type="text" name="password"/><p>
-				<p><input type="submit" name="login"/></p>
+				<p>password: <input type="text" name="password"/></p>
+				<p>first name: <input type="text" name="first"/></p>
+				<p>last name: <input type="text" name="last"/></p>
+				<p><input type="submit" name="register"/></p>
 			</form>
 		</div>
 	</body>
