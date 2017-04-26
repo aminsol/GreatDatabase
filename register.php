@@ -15,22 +15,28 @@
 			echo "Register to the Great Database!"."<br/>";
 		}
 
+		if(isset($_POST['register'])){		//when user clicks submit
+
 		//declare credentials 
 		$email = $_POST["email"];
 		$password = $_POST["password"];
 		$first = $_POST["first"];
 		$last = $_POST["last"];
 
-		//sql query to register new user
-		$register_query = $db->query("INSERT INTO user (email,password,first,last) VALUES ('$email','$password','$first','$last') ");
-	
-		//handle registry
-		if(isset($_POST["register"])){
-			echo("you registered successfully!");
-			mysql_query($register_query);
+		//sql query string
+		$sql = "INSERT INTO user (email,password,first,last) VALUES ('$email','$password','$first','$last')";
+
+		if(!isset($email) || empty($email) || !isset($password) || empty($password) || !isset($first) || empty($first) || !isset($last) || empty($last)){
+
+			//user forgot to fill out some areas on form
+			echo "There were fields missing, try again.";
 		}else{
-			echo("try again!");
+			
+			//run query
+			$db->query($sql);
+			echo "You have successfully registered!";
 		}
+	}
 	?>
 
 <html>
@@ -39,7 +45,7 @@
 		<link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
 		<style>
 			body {
-				background-color: SeaGreen;
+				margin-top: 40%;
 				text-align: center;
 			}
 		</style>
