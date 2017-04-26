@@ -2,8 +2,8 @@
 
 <html>
 	<body>
-		<a href="add-friend.php">Add Friend</a>
-		<a href="remove-friend.php">Remove Friend</a>
-		<a href="search.php">Search Users</a>
+		<a href="add-friend.php">Add Friend</a><br/>
+		<a href="remove-friend.php">Remove Friend</a><br/>
+		<a href="search.php">Search Users</a><br/>
 	</body>
 </html>

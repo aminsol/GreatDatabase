@@ -27,7 +27,7 @@
 		if (
 			$email_query->fetch_assoc() and $pw_query->fetch_assoc()
 		){
-			echo "Success";
+			echo "Success"."<br/>";
 			include("home.php");
 		}else{
 			echo "Your email or password is incorrect, try again.";
