@@ -6,11 +6,6 @@
   define("DB_PASS", "WeAreAwesome");
   $db = new mysqli(DB_HOST,DB_USER,DB_PASS,DB_NAME);
 
-    $sql = "select * from user";
-    $result = $db->query($sql);
-    $row = $result->fetch_assoc();
-    echo $row["email"]."<br/>";
-
     // When user clicks submit button
     if ( isset( $_POST['submit'] ) ) {
 
@@ -21,11 +16,11 @@
       // check if friend doesn't exist
       if (!$row) {
         // Add friend
-        $sql = "insert into user (first, last) values ('{$_POST["first_name"]}', '{$_POST["last_name"]}')";
+        $sql = "insert into friend (sender, recipient, approved) values ('{$_POST["first_name"]}', '{$_POST["last_name"]}', 0)";
         if ($db->query($sql) === TRUE) {
             echo "Added new friend successfully"."<br>";
         } else {
-            echo "Error: " . $sql . "<br>" . $db->error;
+            echo "Error - adding friend: " . $sql . "<br>" . $db->error;
         }
       }
       else{
