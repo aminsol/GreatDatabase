@@ -1,43 +1,39 @@
 <?php
-
-  define("DB_HOST", "45.55.5.95");
-  define("DB_NAME", "thegreatdatabase");
-  define("DB_USER", "thegreatdatabase");
-  define("DB_PASS", "WeAreAwesome");
-  $db = new mysqli(DB_HOST,DB_USER,DB_PASS,DB_NAME);
+    include 'config/config.php';
+    $email_of_sender = "molinab@gmail.com";
 
     // When user clicks submit button
     if ( isset( $_POST['submit'] ) ) {
-
-      $sql = "select * from user where first like '{$_POST["first_name"]}' and last like '{$_POST["last_name"]}' ";
-      $result = $db->query($sql);
-      $row = $result->fetch_assoc();
-
-      // check if friend doesn't exist.
-      if (!$row) {
-        echo "Friend does not exist. Can't remove."."<br>";
-      }
-      else{
-        // Add friend
-        $sql = "delete from friend where first like ('{$_POST["first_name"]}' and last like '{$_POST["last_name"]}' ";
-        if ($db->query($sql) === TRUE) {
-            echo "Removed friend successfully"."<br>";
-        } else {
-            echo "Error - deleting friend: " . $sql . "<br>" . $db->error;
-        }
-      }
+       $sql = "select approved from friend where sender like '$email_of_sender' and recipient like '{$_POST["email"]}' ";
+       $result = $db->query($sql)->fetch_assoc();
+       // if friend request has been sent to the user
+       if($result){
+         // if friend request has been approved
+         if($result["approved"] == 1){
+            // remove user from friends list
+            $sql = "delete from friend where sender like '$email_of_sender' and recipient like '{$_POST["email"]}' ";
+            if ($db->query($sql) === TRUE) {
+              echo "Removed friend successfully"."<br>";
+            } else {
+              echo "Error while removing friend: " . $sql . "<br>" . $db->error;
+            }
+         }
+         else{
+           echo '{"Status":"False", "error":"Friend request has not been accepted yet."}';
+         }
+       }
+       else{
+         echo '{"Status":"False", "error":"Not friends with user. Cannot remove."}';
+       }
   }
-
 ?>
-
 
 <html>
 <body
-  bgcolor=#FF69B4
+  bgcolor="#FFC0CB"
   <h2>Remove Friend</h2>
   <form action="" method="post">
-   <p>First name: <input type="text" name="first_name" /></p>
-   <p>Last name: <input type="text" name="last_name" /></p>
+   <p>Email: <input type="text" name="email" /></p>
    <p><input type="submit" name="submit" /></p>
   </form>
 

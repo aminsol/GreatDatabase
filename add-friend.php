@@ -1,34 +1,41 @@
 <?php
-
-  define("DB_HOST", "45.55.5.95");
-  define("DB_NAME", "thegreatdatabase");
-  define("DB_USER", "thegreatdatabase");
-  define("DB_PASS", "WeAreAwesome");
-  $db = new mysqli(DB_HOST,DB_USER,DB_PASS,DB_NAME);
+    include 'config/config.php';
+    $email_of_sender = "molinab@gmail.com";
 
     // When user clicks submit button
     if ( isset( $_POST['submit'] ) ) {
 
-      $sql = "select * from user where first like '{$_POST["first_name"]}' and last like '{$_POST["last_name"]}' ";
-      $result = $db->query($sql);
-      $row = $result->fetch_assoc();
+      // check whether user exists or not
+      $sql = "select * from user where email like '{$_POST["email"]}' ";
+      $result = $db->query($sql)->fetch_assoc();
+      if ($result) {
 
-      // check if friend doesn't exist
-      if (!$row) {
-        // Add friend
-        $sql = "insert into friend (sender, recipient, approved) values ('{$_POST["first_name"]}', '{$_POST["last_name"]}', 0)";
-        if ($db->query($sql) === TRUE) {
-            echo "Added new friend successfully"."<br>";
-        } else {
-            echo "Error - adding friend: " . $sql . "<br>" . $db->error;
+        // User does exist. Now check to see if a friend request has already been sent to the user.
+        $sql = "select approved from friend where sender like '$email_of_sender' and recipient like '{$_POST["email"]}' ";
+        $result = $db->query($sql)->fetch_assoc();
+        if(!$result){
+            $sql = "insert into friend (sender, recipient, approved) values ('$email_of_sender', '{$_POST["email"]}', 0) ";
+            if ($db->query($sql) === TRUE) {
+              echo "Added new friend successfully"."<br>";
+            } else {
+              echo "Error while adding friend: " . $sql . "<br>" . $db->error;
+            }
+        }
+        // friend is already friends with user
+        else{
+          if($result["approved"] == 0){
+            echo '{"Status":"False", "error":"Friend request is still pending"}';
+          }
+          else{
+            echo '{"Status":"False", "error":"Already friends with user."}';
+          }
         }
       }
       else{
-        // Don't add friend
-        echo "Friend already exists"."<br>";
+        // User doesn't exist
+        echo '{"Status":"False", "error":"User does not exist"}';
       }
   }
-
 ?>
 
 <html>
@@ -36,8 +43,7 @@
   bgcolor="#FFC0CB"
   <h2>Add Friend</h2>
   <form action="" method="post">
-   <p>First name: <input type="text" name="first_name" /></p>
-   <p>Last name: <input type="text" name="last_name" /></p>
+   <p>Email: <input type="text" name="email" /></p>
    <p><input type="submit" name="submit" /></p>
   </form>
 
