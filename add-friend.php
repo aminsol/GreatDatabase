@@ -1,6 +1,6 @@
 <?php
     include 'config/config.php';
-    $email_of_sender = "molinab@gmail.com";
+    $email_of_sender = "molinab@gmail.com"; // ** Need to change. **
 
     // When user clicks submit button
     if ( isset( $_POST['submit'] ) ) {
