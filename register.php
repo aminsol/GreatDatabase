@@ -44,6 +44,12 @@ if(isset($_POST['register'])){		//when user clicks submit
 	<link rel="stylesheet" href="css/custom.css">
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
+	<style>
+	body {
+		background-image: url(https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwiPsb2pos3TAhVM42MKHfK5C9wQjRwIBw&url=https%3A%2F%2Fwww.pinterest.com%2Fpin%2F350858627198994800%2F&psig=AFQjCNGD5iVshCKyGCnWSWwT9pipvIXrDw&ust=1493679065328467);
+	}
+	</style>
+
 
 </head>
 <body>
