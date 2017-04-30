@@ -68,3 +68,8 @@ header{
 .list-group-item .btn-success:hover {
     background-color: #419641;
 }
+.login{
+    margin-left: auto;
+    margin-right: auto;
+    width: 800px;
+}

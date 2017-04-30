@@ -1,7 +1,6 @@
 <?php
 require_once 'config/config.php';
-//$user = $_SESSION['user'];
-$user = 'amin@aminsoltani.com';
+
 $target = isset($_GET['target'])?$_GET['target']:'';
 $taget = $db->real_escape_string($_GET['target']);
 $query = "SELECT first, last, email FROM user where (first like '%$taget%' or last like '%$taget%') and email not like '$user' ";
@@ -44,41 +43,35 @@ $result = $db->query($query);
         <h4 class="list-group-item-heading">Pending Request</h4>
         <hr/>
         <div class="row center-block">
-            <div class="list-group-item">
-                <span class="text-left vcenter">User Carzy</span>
-                <div class="pull-right">
-                    <button class="btn btn-success">
-                        Add
-                    </button>
-                    <button class="btn btn-danger">
-                        Delete
-                    </button>
+            <?php
+            $query = "SELECT user.first,user.last,user.email FROM `friend` inner join user on friend.sender = user.email 
+ where 
+ (recipient = '$user') 
+ and approved = 0 
+ and user.email not like '$user' 
+ union SELECT user.first,user.last,user.email FROM `friend` inner join user on friend.recipient = user.email
+ where 
+ (recipient = '$user')
+ and approved = 0 and user.email not like '$user'";
+            $result_side = $db->query($query);
+
+            ?>
+            <?php while ($request = $result_side->fetch_array()): ?>
+                <div class="list-group-item">
+                    <span class="text-left vcenter"><?= $request['first']." ".$request['last'] ?></span>
+                    <div class="pull-right">
+                        <button class="btn btn-success">
+                            Add
+                        </button>
+                        <button form="delete-form" type="submit" name="target" value="<?=$request['email'] ?>" class="btn btn-primary btn-danger" >
+                            Delete
+                        </button>
+                    </div>
                 </div>
-            </div>
-            <hr/>
-            <div class="list-group-item item">
-                <span class="text-left vcenter">The Creep</span>
-                <div class="pull-right">
-                    <button class="btn btn-success">
-                        Add
-                    </button>
-                    <button class="btn btn-danger">
-                        Delete
-                    </button>
-                </div>
-            </div>
-            <hr/>
-            <div class="list-group-item item">
-                <span class="text-left vcenter">Your Crazy EX</span>
-                <div class="pull-right">
-                    <button class="btn btn-success">
-                        Add
-                    </button>
-                    <button class="btn btn-danger">
-                        Delete
-                    </button>
-                </div>
-            </div>
+                <hr/>
+                <?php
+            endwhile;
+            ?>
         </div>
     </div>
 </div>
