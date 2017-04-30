@@ -1,33 +1,42 @@
 <?php
 include 'config/config.php';
-if ($db->connect_error) {
-	
-    die("Connection failed: " . $db->connect_error);
-}
-if ( isset( $_POST['submit'] ) ) {
-	$sql = "SELECT user.first,user.last,user.email FROM `friend` inner join user on friend.sender = user.email where (friend.sender = '{$_POST["email"]}' or recipient = '{$_POST["email"]}') and approved = 0 and user.email not like '{$_POST["email"]}' union SELECT user.first,user.last,user.email FROM `friend` inner join user on friend.recipient = user.email where (friend.sender = '{$_POST["email"]}' or recipient = '{$_POST["email"]}') and approved = 0 and user.email not like '{$_POST["email"]}'";
-	$result = $db->query($sql)->fetch_assoc();
-	if($result){
-		$sql = "DELETE FROM friend WHERE (sender like '{$_POST["email"]}' or recipient like '{$_POST["email"]}')";
-		$result = $db->query($sql);
-		if($result==TRUE){
-			echo "Request has been deleted."."<br>";
-		}
 
+$message ='';
+if ( isset( $_POST['target'] ) ) {
+	$target = $_POST['target'];
+	$sql = "DELETE FROM friend WHERE (sender like '$target' and recipient like '$user') or (sender like '$user' and recipient like '$target')";
+	$result = $db->query($sql);
+	if($result) {
+		$message = "Request has been deleted!";
 	}else{
-	  echo ' ';
-	  echo "The request was not found."."<br>";
+		$message = "Something went wrong!";
 	}
+
 }
 ?>
- <html>
-<body
-  bgcolor="#C0C0C0"
-  <h2>Delete Request</h2>
-  <form action="" method="post">
-  E-mail: <input type="text" name="email"><br>
-   <p><input type="submit" name="submit" /></p>
-  </form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Welcome to the Great Database</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="css/bootstrap.min.css" >
 
-</body>
-</html>
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="css/custom.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+</head>
+<body>
+<div class="container">
+	<div class="text-center text-danger">
+		<?=$message ?>
+	</div>
+	<div class="text-info text-center white-text">
+		<a class="btn btn-primary btn-success" href="index.php"> GO BACK to Home </a>
+	</div>
+</div>

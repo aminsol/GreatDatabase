@@ -5,21 +5,36 @@ if ( isset( $_POST['target'] ) ) {
     $sql = "UPDATE friend SET approved ='1' WHERE (sender like '{$_POST["target"]}' and recipient like '$user')";
     $result = $db->query($sql);
     if($result==TRUE){
-        echo "Friend request accepted!"."<br>";
+        $message =  "Friend request accepted!"."<br>";
     }
     else {
-        echo "There isn't a match or you are already their friend." . "<br>";
+        $message = "There isn't a match or you are already their friend." . "<br>";
     }
 }
 ?>
-<html>
-<body
-    bgcolor="	#C0C0C0"
-<h2>Accept Request</h2>
-<form action="" method="post">
-    E-mail: <input type="text" name="email"><br>
-    <p><input type="submit" name="submit" /></p>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Welcome to the Great Database</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" >
 
-</body>
-</html>
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+</head>
+<body>
+<div class="container">
+    <div class="text-center text-info">
+        <?=$messsage ?>
+    </div>
+    <div class="text-info text-center white-text">
+        <a class="btn btn-primary btn-success" href="index.php"> GO BACK to Home </a>
+    </div>
+</div>
