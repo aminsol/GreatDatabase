@@ -1,6 +1,10 @@
 html, body{
     height: 100%;
 }
+a:visited, a:hover{
+    color: inherit;
+    background-color: inherit;
+}
 #sidebar-wrapper{
     background-color: #062345;
     height: 100%;
@@ -11,30 +15,43 @@ header{
     background-color: #064479;
     height: 60px;
     padding-top: 10px;
+    overflow-y: hidden;
+}
+.group-name{
+    color: white;
+    font-size: 10pt;
 }
 .group-name > h1{
     margin: 0;
     padding: 0;
-    color: white;
-    font-size: 20pt;
+    font-size: 21pt;
 }
 .vcenter {
     display: inline-block;
     vertical-align: middle;
     float: none;
 }
-.search >input{
+.search input{
     border-radius: 10px;
     background-color: rgba(10,50,80,0.8);
-    height: 30px;
     color: white;
     border: none;
     width: 500px;
+    padding-left: 10px;
     font-size: 12pt;
+    float: left;
+    overflow: auto;
+    height: 36px;
 }
-#logout{
+.white-text{
     color: white;
-    font-size: 12pt;
+}
+.ligh-blue-bg:hover{
+    background-color: #355c97 !important;
+}
+.search button{
+    border-radius: 10px;
+    margin-left: -50px;
 }
 .row > div{
     overflow: auto;
