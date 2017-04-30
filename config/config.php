@@ -9,6 +9,6 @@ if ($db->connect_error) {
 }
 
 session_start();
-if(empty($_SESSION['login'])){
+if(empty($_SESSION['login']) or empty($_SESSION['user'])) {
     header('Location: login.php');
 }
