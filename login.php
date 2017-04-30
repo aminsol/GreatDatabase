@@ -16,8 +16,9 @@ if(isset($_POST['submit'])){		//when user clicks submit
 
 	//confirm query matches input
 	if ($row){
-		$message =  "Success"."<br/>";
-		include("home.php");
+		$_SESSION['user'] = $row['email'];
+		$_SESSION['login'] = 1;
+		header("Location: index.php");
 	}else{
 		$message =   "Your email or password is incorrect, try again.";
 	}
@@ -55,7 +56,9 @@ if(isset($_POST['submit'])){		//when user clicks submit
 		</div>
 		<p><input class="btn btn-success" type="submit" name="submit" value='Login'/></p>
 	</form>
+	<p>Don't have have an account? click <a href="register.php">Here</a></p>
 	<div class="text-danger"><?=$message ?></div>
+	<div class="text-success"><?=$_SESSION['MSG'];  $_SESSION['MSG'] = ''; ?></div>
 </div>
 </div>
 </body>

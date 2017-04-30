@@ -10,12 +10,12 @@ if ($db->connect_error) {
 }
 
 session_start();
-if(empty($_SESSION['login']) or empty($_SESSION['user'])) {
-    //header('Location: login.php');
+if(empty($_SESSION['login']) or empty($_SESSION['user']) and "login" != basename(__FILE__, '.php') and "register" != basename(__FILE__, '.php') ) {
+    header('Location: login.php');
 }
-else{
- //$user = $_SESSION['user'];
+elseif("login" != basename(__FILE__, '.php') and "register" != basename(__FILE__, '.php')){
+ $user = $_SESSION['user'];
 }
 
-$user = 'amin@aminsoltani.com';
+
 
