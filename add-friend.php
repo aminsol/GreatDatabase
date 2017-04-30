@@ -64,7 +64,3 @@ if ( isset( $_POST['target'] ) ) {
         <a class="btn btn-primary btn-success" href="index.php"> GO BACK to Home </a>
     </div>
 </div>
-
-
-</body>
-</html>
