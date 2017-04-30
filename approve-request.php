@@ -32,7 +32,7 @@ if ( isset( $_POST['target'] ) ) {
 <body>
 <div class="container">
     <div class="text-center text-info">
-        <?=$messsage ?>
+        <?=$message ?>
     </div>
     <div class="text-info text-center white-text">
         <a class="btn btn-primary btn-success" href="index.php"> GO BACK to Home </a>
