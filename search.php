@@ -37,6 +37,10 @@ $result = $db->query($query);
         </ul>
     </div>
 </header>
+<form id="delete-form" method="post" action="deleterequest.php">
+</form>
+<form id="approve-form" method="post" action="approve-request.php">
+</form>
 <!-- Sidebar -->
 <div id="sidebar-wrapper" class="left col-lg-3">
     <div class="list-group">
@@ -60,12 +64,13 @@ $result = $db->query($query);
                 <div class="list-group-item">
                     <span class="text-left vcenter"><?= $request['first']." ".$request['last'] ?></span>
                     <div class="pull-right">
-                        <button class="btn btn-success">
+                        <button form="approve-form" type="submit" name="target" value="<?=$request['email'] ?>" class="btn btn-primary btn-success" >
                             Add
                         </button>
                         <button form="delete-form" type="submit" name="target" value="<?=$request['email'] ?>" class="btn btn-primary btn-danger" >
                             Delete
                         </button>
+                    </div>
                     </div>
                 </div>
                 <hr/>
