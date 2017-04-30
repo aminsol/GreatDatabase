@@ -10,5 +10,10 @@ if ($db->connect_error) {
 
 session_start();
 if(empty($_SESSION['login']) or empty($_SESSION['user'])) {
-    header('Location: login.php');
+    //header('Location: login.php');
 }
+else{
+ //$user = $_SESSION['user'];
+}
+
+$user = 'amin@aminsoltani.com';
