@@ -54,7 +54,7 @@ if(isset($_POST['submit'])){		//when user clicks submit
 <body>
 <div class="container">
 <div class="login">
-	<h1 class="text-center">Welcome to the Great Databse</h1>
+	<h1 class="text-center">Welcome to the Great Database</h1>
 	<form class="login" action="" method="post" id="login">
 		<div class="form-group">
 			<label for="usr">Email:</label>

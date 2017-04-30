@@ -1,7 +1,6 @@
 <?php
 require_once 'config/config.php';
-//$user = $_SESSION['user'];
-$user = 'amin@aminsoltani.com';
+
 $target = isset($_GET['target'])?$_GET['target']:'';
 $taget = $db->real_escape_string($_GET['target']);
 $query = "SELECT first, last, email FROM user where (first like '%$taget%' or last like '%$taget%') and email not like '$user' ";
