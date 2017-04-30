@@ -47,7 +47,6 @@ if(isset($_POST['register'])){		//when user clicks submit
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="css/bootstrap.min.css" >
 
-<<<<<<< Updated upstream
 	<!-- Optional theme -->
 	<link rel="stylesheet" href="css/bootstrap-theme.min.css">
 	<link rel="stylesheet" href="css/custom.css">
@@ -83,28 +82,3 @@ if(isset($_POST['register'])){		//when user clicks submit
 	</div>
 </div>
 </body>
-=======
-<html>
-	<head>
-		<title>REGISTER</title>
-		<link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
-		<style>
-			body {
-				margin-top: 40%;
-				text-align: center;
-			}
-		</style>
-	</head>
-	<body>
-		<div id="register">
-			<form action="" method="post" id="login">
-				<p>email: <input type="text" name="email"/></p>
-				<p>password: <input type="password" name="password"/></p>
-				<p>first name: <input type="text" name="first"/></p>
-				<p>last name: <input type="text" name="last"/></p>
-				<p><input type="submit" name="register" value="Register"/></p>
-			</form>
-		</div>
-	</body>
-</html>
->>>>>>> Stashed changes
