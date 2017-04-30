@@ -39,7 +39,15 @@ if(isset($_POST['submit'])){		//when user clicks submit
 	<link rel="stylesheet" href="css/custom.css">
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
+	<!--add background image-->
+	<style>
+	body {
+		background-image: url(https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwiPsb2pos3TAhVM42MKHfK5C9wQjRwIBw&url=https%3A%2F%2Fwww.pinterest.com%2Fpin%2F350858627198994800%2F&psig=AFQjCNGD5iVshCKyGCnWSWwT9pipvIXrDw&ust=1493679065328467);
+	}
+	</style>
 
+
+<<<<<<< Updated upstream
 </head>
 <body>
 <div class="container">
@@ -49,6 +57,40 @@ if(isset($_POST['submit'])){		//when user clicks submit
 		<div class="form-group">
 			<label for="usr">Email:</label>
 			<input type="email" name="email" class="form-control" id="usr">
+=======
+		//run query
+		$result = $db->query($sql);
+		$row = $result->fetch_assoc();
+
+			//confirm query matches input
+			if ($row){
+				echo "Success"."<br/>";
+				include("home.php");
+			}else{
+				echo "Your email or password is incorrect, try again.";
+			}
+		}
+	?>
+
+<html>
+	<head>
+		<title>LOGIN</title>
+		<link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
+		<style>
+			body {
+				text-align: center;
+				margin-top: 40%;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="login">
+			<form action="" method="post" id="login">
+				<p>email: <input type="text" name="email"/></p>
+				<p>password: <input type="password" name="password"/><p>
+				<p><input type="submit" name="submit" value='login'/></p>
+			</form>
+>>>>>>> Stashed changes
 		</div>
 		<div class="form-group">
 			<label for="pwd">Password:</label>

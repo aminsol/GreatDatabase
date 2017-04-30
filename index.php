@@ -11,6 +11,7 @@ $query = "SELECT user.first,user.last,user.email FROM `friend` inner join user o
  and approved = 1 and user.email not like '$user'";
 $result = $db->query($query);
 
+<<<<<<< Updated upstream
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -119,3 +120,19 @@ $result = $db->query($query);
 <script src="js/bootstrap.min.js" ></script>
 </body>
 </html>
+=======
+<html>
+	<head>
+		<style>
+
+		#login-link {
+			margin-left: 50%;
+		}
+
+		</style> 
+	</head>
+	<body>
+		<a id="login-link" href="login.php">Login</a>
+	</body>
+</html>
+>>>>>>> Stashed changes
